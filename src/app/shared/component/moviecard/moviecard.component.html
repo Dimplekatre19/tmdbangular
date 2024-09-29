@@ -1,0 +1,38 @@
+
+<div class="row">
+    <div class="col-md-4 mb-4" *ngFor="let movie of movieData">
+        <div class="card">
+           <figure class="moviecard">
+              <img
+              class="movieimg"
+              src="https://image.tmdb.org/t/p/w500/{{movie.backdrop_path || movie.poster_path}}"
+              [alt]="movie.title || movie.original_title"
+              [title]="movie.title || movie.original_title">
+              <figcaption>
+                <div class="titleinfo text-white p-4">
+                    <div class="row">
+                       <div class="col-10">
+                          <h5 class="mb-0">{{movie.title || movie.original_title}}</h5>
+                       </div>
+                       <div class="col-2 align-self-center">
+                          <span
+                           [ngClass]="{
+                              'bg-success':movie.vote_average>=7,
+                              'bg-warning':movie.vote_average>=5 && movie.vote_average<7,
+                              'bg-danger':movie.vote_average<5
+                           }"
+                          class="p-2">
+                            {{movie.vote_average}}
+                          </span>
+                       </div>
+                    </div>
+                </div>
+                <div class="overview bg-white p-2">
+                  <h5>{{movie.title || movie.original_title}}</h5>
+                  <p>{{movie.overview}}</p>
+                </div>
+              </figcaption>
+           </figure>
+        </div>
+    </div>
+</div>
